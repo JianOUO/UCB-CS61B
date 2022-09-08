@@ -93,18 +93,10 @@ public class IntList {
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
-    public static int flag = 1;
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        if (A == null && flag == 1) {
-            if (B == null) {
-                return null;
-            }
-            flag = 0;
-            return new IntList(B.first, catenate(B.rest, A));
-        }
-        if (A == null && flag == 0) {
-            return null;
+        if (A == null) {
+            return B;
         }
         return new IntList(A.first, catenate(A.rest, B));
     }
