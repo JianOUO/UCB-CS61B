@@ -28,6 +28,7 @@ public class Percolation {
         }
         if (isOpen(row, col)) return;
         array[row][col] = true;
+        numberofopen += 1;
         if (row == 0){
             setforper.union(top, xyToNumber(row, col));
             setforfull.union(top, xyToNumber(row, col));
@@ -77,4 +78,7 @@ public class Percolation {
         return setforper.connected(top, bottom);
     }
 
+    public static void main(String[] args) {
+        return;
+    }
 }
