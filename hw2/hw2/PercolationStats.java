@@ -2,14 +2,14 @@ package hw2;
 
 public class PercolationStats {
 
-    private int[] x;
+    private double[] x;
     private Percolation set;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
         if (N <= 0 || T <= 0) {
             throw new java.lang.IllegalArgumentException();
         }
-        x = new int[T];
+        x = new double[T];
         for (int i = 0; i < T; i++) {
             set = pf.make(N);
             while (!set.percolates()) {
@@ -17,7 +17,7 @@ public class PercolationStats {
                 int randomy = edu.princeton.cs.introcs.StdRandom.uniform(0, N);
                 set.open(randomx, randomy);
             }
-            x[i] = set.numberOfOpenSites();
+            x[i] = set.numberOfOpenSites() / Double.valueOf(N * N);
         }
         /*for (int i : x) {
             System.out.println(i);
@@ -41,12 +41,6 @@ public class PercolationStats {
         return mean() + 1.96 * stddev() / Math.sqrt(x.length);
     }
 
-
-   public static void main(String[] args) {
-        PercolationFactory pf = new PercolationFactory();
-        PercolationStats test = new PercolationStats(20,10, pf);
-        System.out.println(test.mean());
-    }
 }
 
     //*/
