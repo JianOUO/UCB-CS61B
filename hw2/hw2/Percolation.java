@@ -6,8 +6,8 @@ public class Percolation {
     private WeightedQuickUnionUF setforfull, setforper;
     private boolean[][] array;
     private int numberofopen, top, bottom;
-    public Percolation(int N){
-        if (N <= 0){
+    public Percolation(int N) {
+        if (N <= 0) {
             throw new java.lang.IllegalArgumentException("N can't <= 0");
         }
         numberofopen = 0;
@@ -22,18 +22,20 @@ public class Percolation {
             }
         }
     }
-    public void open(int row, int col){
-        if (row < 0 || col < 0 || row >= array.length || col >= array.length){
+    public void open(int row, int col) {
+        if (row < 0 || col < 0 || row >= array.length || col >= array.length) {
             throw new java.lang.IndexOutOfBoundsException();
         }
-        if (isOpen(row, col)) return;
+        if (isOpen(row, col)) {
+            return;
+        }
         array[row][col] = true;
         numberofopen += 1;
-        if (row == 0){
+        if (row == 0) {
             setforper.union(top, xyToNumber(row, col));
             setforfull.union(top, xyToNumber(row, col));
         }
-        if (row == array.length - 1){
+        if (row == array.length - 1) {
             setforper.union(bottom, xyToNumber(row, col));
         }
         if (row > 0 && isOpen(row - 1, col)) {
@@ -54,27 +56,27 @@ public class Percolation {
         }
     }
 
-    public boolean isOpen(int row, int col){
-        if (row < 0 || col < 0 || row >= array.length || col >= array.length){
+    public boolean isOpen(int row, int col) {
+        if (row < 0 || col < 0 || row >= array.length || col >= array.length) {
             throw new java.lang.IndexOutOfBoundsException();
         }
         return array[row][col];
     }
-    public boolean isFull(int row, int col){
-        if (row < 0 || col < 0 || row >= array.length || col >= array.length){
+    public boolean isFull(int row, int col) {
+        if (row < 0 || col < 0 || row >= array.length || col >= array.length) {
             throw new java.lang.IndexOutOfBoundsException();
         }
         return setforfull.connected(xyToNumber(row, col), top);
     }
 
-    private int xyToNumber(int row, int col){
-       return row * array.length + col;
+    private int xyToNumber(int row, int col) {
+        return row * array.length + col;
     }
-    public int numberOfOpenSites(){
+    public int numberOfOpenSites() {
         return numberofopen;
     }
 
-    public boolean percolates(){
+    public boolean percolates() {
         return setforper.connected(top, bottom);
     }
 

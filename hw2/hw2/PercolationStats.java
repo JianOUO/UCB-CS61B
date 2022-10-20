@@ -12,13 +12,17 @@ public class PercolationStats {
         x = new int[T];
         for (int i = 0; i < T; i++) {
             set = pf.make(N);
-            while (set.percolates()) {
+            while (!set.percolates()) {
                 int randomx = edu.princeton.cs.introcs.StdRandom.uniform(0, N);
                 int randomy = edu.princeton.cs.introcs.StdRandom.uniform(0, N);
                 set.open(randomx, randomy);
             }
             x[i] = set.numberOfOpenSites();
         }
+        /*for (int i : x) {
+            System.out.println(i);
+        }
+         */
     }
 
     public double mean() {
@@ -37,12 +41,12 @@ public class PercolationStats {
         return mean() + 1.96 * stddev() / Math.sqrt(x.length);
     }
 
-}
 
-   /* public static void main(String[] args) {
+   public static void main(String[] args) {
         PercolationFactory pf = new PercolationFactory();
         PercolationStats test = new PercolationStats(20,10, pf);
+        System.out.println(test.mean());
     }
 }
 
-    */
+    //*/
