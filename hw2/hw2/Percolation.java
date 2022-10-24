@@ -80,4 +80,7 @@ public class Percolation {
         return setforper.connected(top, bottom);
     }
 
+    public static void main(String[] args) {
+
+    }
 }
