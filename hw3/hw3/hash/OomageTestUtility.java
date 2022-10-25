@@ -15,8 +15,8 @@ public class OomageTestUtility {
          */
         int bucketNum;
         int totalNum = oomages.size();
-        double Min = totalNum / 50.0;
-        double Max = totalNum / 2.5;
+        double min = totalNum / 50.0;
+        double max = totalNum / 2.5;
         List<Oomage>[] list = new ArrayList[M];
         for (int i = 0; i < M; i++) {
             list[i] = new ArrayList<>();
@@ -26,7 +26,7 @@ public class OomageTestUtility {
             list[bucketNum].add(O);
         }
         for (List<Oomage> templist : list) {
-            if (templist.size() > Max || templist.size() < Min) {
+            if (templist.size() > max || templist.size() < min) {
                 return false;
             }
         }

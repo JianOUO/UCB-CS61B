@@ -31,7 +31,7 @@ public class TestSimpleOomage {
          */
         Set<Integer> set = new HashSet<>();
         for (int i = 0; i <= 255; i += 5) {
-            for (int j = 0; j <=255; j += 5) {
+            for (int j = 0; j <= 255; j += 5) {
                 for (int k = 0; k <= 255; k += 5) {
                     SimpleOomage temp = new SimpleOomage(i, j, k);
                     set.add(temp.hashCode());
