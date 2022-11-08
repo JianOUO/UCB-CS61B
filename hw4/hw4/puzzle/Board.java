@@ -125,12 +125,6 @@ public class Board implements WorldState {
         s.append("\n");
         return s.toString();
     }
-    public int hashcode() {
-        int result = 0;
-        for (int i = 0; i < size; i++) {
-            result = (tiles[i].hashCode() + result) * 31;
-        }
-        return result;
-    }
+
 }
 
