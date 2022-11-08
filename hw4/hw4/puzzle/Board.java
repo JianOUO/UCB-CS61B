@@ -3,7 +3,7 @@ import edu.princeton.cs.algs4.Queue;
 
 public class Board implements WorldState {
     private int[][] tiles;
-    private int size;
+    private int size = 0;
     private int[][] goal;
     public Board(int[][] tiles) {
         size = tiles.length;
@@ -91,6 +91,12 @@ public class Board implements WorldState {
         return manhattan();
     }
     public boolean equals(Object y) {
+        if (this == y) {
+            return true;
+        }
+        if (y == null || getClass() != y.getClass()) {
+            return false;
+        }
         Board b = (Board) y;
         if (b.size != this.size) {
             return false;
@@ -119,4 +125,12 @@ public class Board implements WorldState {
         s.append("\n");
         return s.toString();
     }
+    public int hashcode() {
+        int result = 0;
+        for (int i = 0; i < size; i++) {
+            result = (tiles[i].hashCode() + result) * 31;
+        }
+        return result;
+    }
 }
+
