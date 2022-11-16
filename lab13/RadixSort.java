@@ -17,7 +17,7 @@ public class RadixSort {
      */
     public static String[] sort(String[] asciis) {
         // TODO: Implement LSD Sort
-        int maxlength = 0;
+        /** private int maxlength = 0;
         for (String string : asciis) {
             maxlength = string.length() > maxlength ? string.length() : maxlength;
         }
@@ -26,8 +26,15 @@ public class RadixSort {
             asciis2[i] = asciis[i];
         }
         for (int i = 0; i < maxlength; i++) {
-            sortHelperLSD(asciis2, i, maxlength);
+            //sortHelperLSD(asciis2, i, maxlength);
         }
+        return asciis2;
+         */
+        String[] asciis2 = new String[asciis.length];
+        for (int i = 0; i < asciis.length; i++) {
+            asciis2[i] = asciis[i];
+        }
+        sortHelperMSD(asciis2,0,asciis2.length - 1,0);
         return asciis2;
     }
 
@@ -69,13 +76,17 @@ public class RadixSort {
         return;
     }
 
-    /**public static void main(String[] args) {
+    /** public static void main(String[] args) {
         String[] asciis = { "12", "226", "255", "18", "8","188"};
         for (String string : asciis) {
             System.out.print(string + " ");
         }
         System.out.println();
         asciis = sort(asciis);
+        for (String string : asciis) {
+            System.out.print(string + " ");
+        }
+        System.out.println();
     }
      */
     /**
@@ -90,6 +101,35 @@ public class RadixSort {
      **/
     private static void sortHelperMSD(String[] asciis, int start, int end, int index) {
         // Optional MSD helper method for optional MSD radix sort
+        if (end <= start) {
+            return;
+        }
+        int R = 256;
+        int[] count = new int[R + 2];
+        for (int i = start; i <= end; i++) {
+            if (asciis[i].length() <= index) {
+                count[1] += 1;
+            } else {
+                count[asciis[i].charAt(index) + 2] += 1;
+            }
+        }
+        for (int i = 0; i < R + 1; i++) {
+            count[i + 1] += count[i];
+        }
+        String[] aux = new String[asciis.length];
+        for (int i = start; i <= end; i++) {
+            if (asciis[i].length() <= index) {
+                aux[count[0]++] = asciis[i];
+            } else {
+                aux[count[asciis[i].charAt(index) + 1]++] = asciis[i];
+            }
+        }
+        for (int i = start; i <= end; i++) {
+            asciis[i] = aux[i - start];
+        }
+        for (int i = 0; i < R; i++) {
+            sortHelperMSD(asciis, start + count[i], start + count[i + 1] -1, index + 1);
+        }
         return;
     }
 }
