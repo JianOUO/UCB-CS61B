@@ -46,7 +46,8 @@ public class RadixSort {
             if (dist > index) {
                 count[1] += 1;
             } else {
-                count[string.charAt(index - dist) + 2] += 1;
+                int place = string.length() - index + dist - 1;
+                count[string.charAt(place) + 2] += 1;
             }
         }
         for (int i = 1; i < R + 2; i++) {
@@ -58,7 +59,8 @@ public class RadixSort {
             if (dist > index) {
                 aux[count[0]++] = string;
             } else {
-                aux[count[string.charAt(index - dist) + 1]++] = string;
+                int place = string.length() - index + dist - 1;
+                aux[count[string.charAt(place) + 1]++] = string;
             }
         }
         for (int i = 0; i < asciis.length; i++) {
@@ -67,6 +69,15 @@ public class RadixSort {
         return;
     }
 
+    /**public static void main(String[] args) {
+        String[] asciis = { "12", "226", "255", "18", "8","188"};
+        for (String string : asciis) {
+            System.out.print(string + " ");
+        }
+        System.out.println();
+        asciis = sort(asciis);
+    }
+     */
     /**
      * MSD radix sort helper function that recursively calls itself to achieve the sorted array.
      * Destructive method that changes the passed in array, asciis.
