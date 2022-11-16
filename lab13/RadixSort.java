@@ -46,19 +46,19 @@ public class RadixSort {
             if (dist > index) {
                 count[1] += 1;
             } else {
-                count[string[index - dist] + 2] += 1;
+                count[string.charAt(index - dist) + 2] += 1;
             }
         }
         for (int i = 1; i < R + 2; i++) {
             count[i] += count[i - 1];
         }
-        String[] aux = String[asciis.length];
+        String[] aux = new String[asciis.length];
         for (String string : asciis) {
             int dist = maxlength - string.length();
             if (dist > index) {
                 aux[count[0]++] = string;
             } else {
-                aux[count[string[index - dist] + 1]++] = string;
+                aux[count[string.charAt(index - dist) + 1]++] = string;
             }
         }
         for (int i = 0; i < asciis.length; i++) {
