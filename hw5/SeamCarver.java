@@ -5,17 +5,20 @@ import java.awt.*;
 
 public class SeamCarver {
     private Picture picture;
+    private int width, height;
     public SeamCarver(Picture picture) {
         this.picture = new Picture(picture);
+        width = this.picture.width();
+        height = this.picture.height();
     }
     public Picture picture() {
         return new Picture(picture);
     }                      // current picture
     public int width() {
-        return picture.width();
+        return width;
     }                       // width of current picture
     public int height() {
-        return picture.height();
+        return height;
     }                        // height of current picture
     public double energy(int x, int y) {
         if (x < 0 || x > width() - 1 || y < 0 || y > height() - 1) {
