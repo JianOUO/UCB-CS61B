@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.Picture;
 import java.awt.*;
 
 public class SeamCarver {
-    Picture picture;
+    private Picture picture;
     public SeamCarver(Picture picture) {
         this.picture = picture;
     }
@@ -24,7 +24,11 @@ public class SeamCarver {
         Color left, right, up, down;
         if (x == 0) {
             left = picture.get(width() - 1, y);
-            right = picture.get(x + 1, y);
+            if (width() > 1) {
+                right = picture.get(x + 1, y);
+            } else {
+                right = left;
+            }
         } else if (x == width() - 1) {
             right = picture.get(0, y);
             left = picture.get(x - 1, y);
@@ -33,8 +37,12 @@ public class SeamCarver {
             right = picture.get(x + 1, y);
         }
         if (y == 0) {
-            down = picture.get(x, y + 1);
             up = picture.get(x, height() - 1);
+            if (height() > 1) {
+                down = picture.get(x, y + 1);
+            } else {
+                down = up;
+            }
         } else if (y == height() - 1) {
             down = picture.get(x, 0);
             up = picture.get(x, y - 1);
@@ -42,10 +50,12 @@ public class SeamCarver {
             down = picture.get(x, y + 1);
             up = picture.get(x, y - 1);
         }
-        double deltaX = Math.pow(left.getBlue() - right.getBlue(), 2) + Math.pow(left.getGreen() - right.getGreen(), 2) +
-                Math.pow(left.getRed() - right.getRed(), 2);
-        double deltaY = Math.pow(up.getBlue() - down.getBlue(), 2) + Math.pow(up.getGreen() - down.getGreen(), 2) +
-                Math.pow(up.getRed() - down.getRed(), 2);
+        double deltaX = Math.pow(left.getBlue() - right.getBlue(), 2)
+                + Math.pow(left.getGreen() - right.getGreen(), 2)
+                + Math.pow(left.getRed() - right.getRed(), 2);
+        double deltaY = Math.pow(up.getBlue() - down.getBlue(), 2)
+                + Math.pow(up.getGreen() - down.getGreen(), 2)
+                + Math.pow(up.getRed() - down.getRed(), 2);
         return deltaX + deltaY;
     }           // energy of pixel at column x and row y
     public int[] findVerticalSeam() {
@@ -57,12 +67,17 @@ public class SeamCarver {
             for (int i = 0; i < width(); i++) {
                 double min;
                 if (i == 0) {
-                    if (M[i] < M[i + 1]) {
+                    if (width() > 1) {
+                        if (M[i] < M[i + 1]) {
+                            min = M[i];
+                            path[i][j] = i;
+                        } else {
+                            min = M[i + 1];
+                            path[i][j] = i + 1;
+                        }
+                    } else {
                         min = M[i];
                         path[i][j] = i;
-                    } else {
-                        min = M[i + 1];
-                        path[i][j] = i + 1;
                     }
                 } else if (i == width() - 1) {
                     if (M[i] < M[i - 1]) {
