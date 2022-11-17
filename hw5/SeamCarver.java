@@ -9,6 +9,7 @@ public class SeamCarver {
         this.picture = picture;
     }
     public Picture picture() {
+        removeHorizontalSeam(findHorizontalSeam());
         return picture;
     }                      // current picture
     public int width() {
@@ -138,6 +139,8 @@ public class SeamCarver {
         picture = new Picture(SeamRemover.removeHorizontalSeam(picture, seam));
     }  // remove horizontal seam from picture
     public void removeVerticalSeam(int[] seam) {
-        picture = new Picture(SeamRemover.removeHorizontalSeam(picture, seam));
+        picture = new Picture(SeamRemover.removeVerticalSeam(picture, seam));
     }    // remove vertical seam from picture
+
+
 }
