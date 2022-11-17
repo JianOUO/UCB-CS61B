@@ -5,20 +5,17 @@ import java.awt.*;
 
 public class SeamCarver {
     private Picture picture;
-    private int width, height;
     public SeamCarver(Picture picture) {
         this.picture = new Picture(picture);
-        width = this.picture.width();
-        height = this.picture.height();
     }
     public Picture picture() {
         return new Picture(picture);
     }                      // current picture
     public int width() {
-        return width;
+        return picture.width();
     }                       // width of current picture
     public int height() {
-        return height;
+        return picture.height();
     }                        // height of current picture
     public double energy(int x, int y) {
         if (x < 0 || x > width() - 1 || y < 0 || y > height() - 1) {
@@ -138,10 +135,10 @@ public class SeamCarver {
         return sc.findVerticalSeam();
     }             // sequence of indices for vertical seam
     public void removeHorizontalSeam(int[] seam) {
-        picture = new Picture(SeamRemover.removeHorizontalSeam(picture, seam));
+        picture = SeamRemover.removeHorizontalSeam(picture, seam);
     }  // remove horizontal seam from picture
     public void removeVerticalSeam(int[] seam) {
-        picture = new Picture(SeamRemover.removeVerticalSeam(picture, seam));
+        picture = SeamRemover.removeVerticalSeam(picture, seam);
     }    // remove vertical seam from picture
 
 
