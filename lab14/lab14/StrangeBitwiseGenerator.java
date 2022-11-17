@@ -1,12 +1,10 @@
 package lab14;
 
-import edu.princeton.cs.introcs.StdRandom;
 import lab14lib.Generator;
 
-public class StrangeBItwiseGenerator implements Generator {
-
+public class StrangeBitwiseGenerator implements Generator {
     private int period, state, weirdState;
-    public StrangeBItwiseGenerator(int period) {
+    public StrangeBitwiseGenerator(int period) {
         state = 0;
         this.period = period;
     }
