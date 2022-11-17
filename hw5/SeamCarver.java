@@ -9,7 +9,6 @@ public class SeamCarver {
         this.picture = picture;
     }
     public Picture picture() {
-        removeHorizontalSeam(findHorizontalSeam());
         return picture;
     }                      // current picture
     public int width() {
