@@ -135,9 +135,9 @@ public class SeamCarver {
         return sc.findVerticalSeam();
     }             // sequence of indices for vertical seam
     public void removeHorizontalSeam(int[] seam) {
-        SeamRemover.removeHorizontalSeam(picture, seam);
+        picture = SeamRemover.removeHorizontalSeam(picture, seam);
     }  // remove horizontal seam from picture
     public void removeVerticalSeam(int[] seam) {
-        SeamRemover.removeHorizontalSeam(picture, seam);
+        picture = SeamRemover.removeHorizontalSeam(picture, seam);
     }    // remove vertical seam from picture
 }
