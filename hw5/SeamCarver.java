@@ -6,7 +6,7 @@ import java.awt.*;
 public class SeamCarver {
     private Picture picture;
     public SeamCarver(Picture picture) {
-        this.picture = picture;
+        this.picture = new Picture(picture);
     }
     public Picture picture() {
         return picture;
@@ -135,10 +135,10 @@ public class SeamCarver {
         return sc.findVerticalSeam();
     }             // sequence of indices for vertical seam
     public void removeHorizontalSeam(int[] seam) {
-        picture = new Picture(SeamRemover.removeHorizontalSeam(picture, seam));
+        picture = SeamRemover.removeHorizontalSeam(picture, seam);
     }  // remove horizontal seam from picture
     public void removeVerticalSeam(int[] seam) {
-        picture = new Picture(SeamRemover.removeVerticalSeam(picture, seam));
+        picture = SeamRemover.removeVerticalSeam(picture, seam);
     }    // remove vertical seam from picture
 
 
