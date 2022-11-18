@@ -66,7 +66,8 @@ public class TestPlip {
 
         assertEquals(expected, actual);
 
-        p.energy = 0.5;
+
+        /**p.energy = 0.5;
 
         surrounded.put(Direction.LEFT, new Clorus());
 
@@ -81,6 +82,7 @@ public class TestPlip {
         expected = new Action(Action.ActionType.STAY);
 
         assertEquals(expected, actual);
+        */
     }
 
     public static void main(String[] args) {

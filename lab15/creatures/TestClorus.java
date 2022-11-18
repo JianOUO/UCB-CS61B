@@ -15,18 +15,18 @@ public class TestClorus {
     public void testBasics() {
         Clorus c = new Clorus(2);
         Plip p = new Plip(1);
-        assertEquals(2.00, c.energy, 0.01);
+        assertEquals(2.00, c.energy(), 0.01);
         assertEquals(new Color(34, 0, 231), c.color());
         c.attack(p);
-        assertEquals(3.00, c.energy, 0.01);
+        assertEquals(3.00, c.energy(), 0.01);
         c.move();
-        assertEquals(2.97, c.energy, 0.01);
+        assertEquals(2.97, c.energy(), 0.01);
         c.move();
-        assertEquals(2.94, c.energy, 0.01);
+        assertEquals(2.94, c.energy(), 0.01);
         c.stay();
-        assertEquals(2.93, c.energy, 0.01);
+        assertEquals(2.93, c.energy(), 0.01);
         c.stay();
-        assertEquals(2.92, c.energy, 0.01);
+        assertEquals(2.92, c.energy(), 0.01);
     }
 
     @Test
@@ -34,8 +34,8 @@ public class TestClorus {
         Clorus c = new Clorus(2);
         Clorus newc = c.replicate();
         assertNotSame(c, newc);
-        assertEquals(1.00, c.energy, 0.01);
-        assertEquals(1.00, newc.energy, 0.01);
+        assertEquals(1.00, c.energy(), 0.01);
+        assertEquals(1.00, newc.energy(), 0.01);
     }
 
     @Test
