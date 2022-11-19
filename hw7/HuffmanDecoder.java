@@ -9,7 +9,7 @@ public class HuffmanDecoder {
         while (bitsequence.length() != 0) {
             Match match = codingTrie.longestPrefixMatch(bitsequence);
             string = string + match.getSymbol();
-            bitsequence = new BitSequence(bitsequence.allButFirstNBits(match.getSequence().length()));
+            bitsequence = bitsequence.allButFirstNBits(match.getSequence().length());
         }
         char[] symbols = new char[string.length()];
         for (int i = 0; i < string.length(); i++) {

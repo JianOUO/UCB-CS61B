@@ -47,6 +47,26 @@ public class BinaryTrie implements Serializable {
     }
     public Match longestPrefixMatch(BitSequence querySequence) {
         return findMatch(root, querySequence, 0);
+        /**Node n = root;
+        int i = 0;
+        while (true) {
+            if (!n.isLeaf()) {
+                if (querySequence.bitAt(i) == 0) {
+                    n = n.left;
+                    i += 1;
+                } else {
+                    n = n.right;
+                    i += 1;
+                }
+            } else {
+                break;
+            }
+
+        }
+
+        BitSequence bit = new BitSequence(querySequence.firstNBits(i));
+        return new Match(bit, n.ch);
+         */
     }
 
     private Match findMatch(Node n, BitSequence b, int d) {
